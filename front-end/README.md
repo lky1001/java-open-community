@@ -11,3 +11,15 @@
 
 - React
 - Ant Design
+
+## Run dev server
+
+```
+$ npm or yarn start
+```
+
+## Build
+
+```
+$ npm or yanr build
+```

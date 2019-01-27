@@ -3,10 +3,10 @@ server:
 spring:
   datasource:
     type: org.apache.commons.dbcp2.BasicDataSource
-    url: jdbc:mysql://localhost:3306/comm-dev
-    username: comm
+    url: jdbc:mysql://localhost:3306/comm-dev?characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
     password: 12345678
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
     dbcp2:
       initial-size: 2
       max-total: 2
@@ -26,6 +26,9 @@ spring:
     show-sql: true
     hibernate:
       use-new-id-generator-mappings: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
 logging:
   config: classpath:logback-dev.xml
   level:

@@ -33,6 +33,9 @@ public class UserModel {
 
     private int level;
 
+    @Enumerated(EnumType.STRING)
+    private EnumUserType type;
+
     private Date created;
 
     private Date updated;

@@ -1,5 +1,6 @@
 package com.devband.opencomm.user.model;
 
+import com.devband.opencomm.post.model.PostModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -35,6 +37,9 @@ public class UserModel {
 
     @Enumerated(EnumType.STRING)
     private EnumUserType type;
+
+    @OneToMany(mappedBy = "user")
+    private List<PostModel> postList;
 
     private Date created;
 

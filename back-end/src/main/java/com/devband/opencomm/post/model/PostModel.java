@@ -1,14 +1,13 @@
 package com.devband.opencomm.post.model;
 
+import com.devband.opencomm.category.model.CategoryModel;
+import com.devband.opencomm.user.model.UserModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Getter
@@ -21,11 +20,19 @@ public class PostModel {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     private String title;
 
     private String content;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserModel user;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private CategoryModel category;
 
     private Date created;
 

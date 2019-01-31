@@ -8,6 +8,7 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.http.MediaType.MULTIPART_FORM_DATA;
 import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
@@ -24,6 +25,7 @@ public class Router {
 
     @Bean
     public RouterFunction<ServerResponse> monoRouterFunction() {
-        return route(POST("/auth").and(accept(APPLICATION_JSON)), userHandler::auth);
+        return route(POST("/sign-up").and(accept(MULTIPART_FORM_DATA)), userHandler::signUp)
+            .andRoute(POST("/auth").and(accept(APPLICATION_JSON)), userHandler::auth);
     }
 }

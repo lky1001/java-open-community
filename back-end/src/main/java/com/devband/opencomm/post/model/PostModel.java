@@ -45,6 +45,9 @@ public class PostModel {
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
     private List<AnswerModel> answerList;
 
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
+    private List<PostVoteModel> postVoteList;
+
     private Date created;
 
     private Date updated;

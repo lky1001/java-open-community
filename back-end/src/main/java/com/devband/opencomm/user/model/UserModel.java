@@ -1,7 +1,9 @@
 package com.devband.opencomm.user.model;
 
+import com.devband.opencomm.answer.model.AnswerLikeModel;
 import com.devband.opencomm.answer.model.AnswerModel;
 import com.devband.opencomm.post.model.PostModel;
+import com.devband.opencomm.post.model.PostVoteModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,6 +46,12 @@ public class UserModel {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<PostModel> postList;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<PostVoteModel> postVoteList;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<AnswerLikeModel> answerLikeList;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<AnswerModel> answerList;

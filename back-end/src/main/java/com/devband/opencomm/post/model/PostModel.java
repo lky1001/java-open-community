@@ -1,5 +1,6 @@
 package com.devband.opencomm.post.model;
 
+import com.devband.opencomm.answer.model.AnswerModel;
 import com.devband.opencomm.category.model.CategoryModel;
 import com.devband.opencomm.user.model.UserModel;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,6 +28,12 @@ public class PostModel {
 
     private String content;
 
+    private int votes;
+
+    private int answers;
+
+    private int views;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserModel user;
@@ -33,6 +41,9 @@ public class PostModel {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryModel category;
+
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
+    private List<AnswerModel> answerList;
 
     private Date created;
 

@@ -1,5 +1,6 @@
 package com.devband.opencomm.user.model;
 
+import com.devband.opencomm.answer.model.AnswerModel;
 import com.devband.opencomm.post.model.PostModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,6 +32,9 @@ public class UserModel {
     @Column(name = "nickname")
     private String nickname;
 
+    @Column(name = "profile_image")
+    private String profileImage;
+
     private int point;
 
     private int level;
@@ -38,8 +42,11 @@ public class UserModel {
     @Enumerated(EnumType.STRING)
     private EnumUserType type;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<PostModel> postList;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<AnswerModel> answerList;
 
     private Date created;
 

@@ -6,6 +6,9 @@ import com.devband.opencomm.security.PBKDF2Encoder;
 import com.devband.opencomm.security.Role;
 import com.devband.opencomm.security.model.AuthRequest;
 import com.devband.opencomm.security.model.AuthResponse;
+import com.devband.opencomm.user.service.UserService;
+import com.devband.opencomm.user.to.UserTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -24,9 +27,13 @@ public class UserHandler {
 
     private PBKDF2Encoder passwordEncoder;
 
-    public UserHandler(JWTUtil jwtUtil, PBKDF2Encoder passwordEncoder) {
+    private UserService userService;
+
+    @Autowired
+    public UserHandler(JWTUtil jwtUtil, PBKDF2Encoder passwordEncoder, UserService userService) {
         this.jwtUtil = jwtUtil;
         this.passwordEncoder = passwordEncoder;
+        this.userService = userService;
     }
 
     public Mono<ServerResponse> auth(ServerRequest serverRequest) {
@@ -44,14 +51,8 @@ public class UserHandler {
     }
 
     public Mono<ServerResponse> signUp(ServerRequest request) {
-        return request.body(toMultipartData()).flatMap(parts -> {
-            var map = parts.toSingleValueMap();
-            var profileImage = (FilePart) map.get("iamge");
-
-            // todo - file upload to s3
-            // save user
-
-            return ServerResponse.ok().body(fromObject("OK"));
-        });
+        return request.bodyToMono(UserTO.class)
+            .map(userService::singUp)
+            .flatMap(result -> ServerResponse.ok().body(fromObject(result)));
     }
 }

@@ -7,4 +7,6 @@ import javax.transaction.Transactional;
 
 @Transactional
 public interface UserRepository extends CrudRepository<UserModel, Integer> {
+
+    UserModel findByUserId(String userId);
 }

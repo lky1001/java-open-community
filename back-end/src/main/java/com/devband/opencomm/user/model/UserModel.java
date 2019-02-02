@@ -4,10 +4,7 @@ import com.devband.opencomm.answer.model.AnswerLikeModel;
 import com.devband.opencomm.answer.model.AnswerModel;
 import com.devband.opencomm.post.model.PostModel;
 import com.devband.opencomm.post.model.PostVoteModel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,6 +14,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "users")
 public class UserModel {

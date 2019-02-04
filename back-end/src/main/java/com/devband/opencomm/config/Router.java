@@ -25,7 +25,6 @@ public class Router {
 
     @Bean
     public RouterFunction<ServerResponse> monoRouterFunction() {
-        return route(POST("/sign-up").and(accept(MULTIPART_FORM_DATA)), userHandler::signUp)
-            .andRoute(POST("/auth").and(accept(APPLICATION_JSON)), userHandler::auth);
+        return route(POST("/sign-up").and(accept(MULTIPART_FORM_DATA)), userHandler::signUp);
     }
 }

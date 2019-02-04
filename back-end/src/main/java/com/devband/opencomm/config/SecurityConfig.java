@@ -30,11 +30,13 @@ public class SecurityConfig {
         return http.csrf().disable()
             .formLogin().disable()
             .httpBasic().disable()
-            .authenticationManager(reactiveAuthenticationManager())
             .authorizeExchange()
             .pathMatchers(HttpMethod.OPTIONS).permitAll()
-            .pathMatchers("/auth").permitAll()
-            .anyExchange().authenticated()
+            .anyExchange().permitAll()
+            .and()
+            .oauth2ResourceServer()
+            .and().oauth2Login()
+                .authenticationManager(reactiveAuthenticationManager())
             .and().build();
     }
 

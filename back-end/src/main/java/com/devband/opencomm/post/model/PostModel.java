@@ -34,6 +34,9 @@ public class PostModel {
 
     private int views;
 
+    @Column(name = "category_id", insertable = false, updatable = false)
+    private int categoryId;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserModel user;

@@ -7,4 +7,6 @@ import javax.transaction.Transactional;
 
 @Transactional
 public interface CategoryRepository extends CrudRepository<CategoryModel, Integer> {
+
+    CategoryModel findByCategoryAndDeletedIsNull(String category);
 }

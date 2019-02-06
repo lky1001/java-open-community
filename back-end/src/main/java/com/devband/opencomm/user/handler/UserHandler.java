@@ -1,16 +1,11 @@
 package com.devband.opencomm.user.handler;
 
-import com.devband.opencomm.security.CustomUserDetails;
-import com.devband.opencomm.security.Role;
 import com.devband.opencomm.user.service.UserService;
 import com.devband.opencomm.user.to.UserTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
-
-import java.util.Arrays;
 
 import static org.springframework.web.reactive.function.BodyInserters.fromObject;
 

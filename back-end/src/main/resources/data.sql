@@ -1,0 +1,1 @@
+INSERT INTO categories(category, created) values('자바', now());
